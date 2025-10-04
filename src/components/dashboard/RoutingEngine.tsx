@@ -1,5 +1,4 @@
-import { Card } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Card, Badge } from '@/components/ui';
 import { ArrowRight, Brain, TrendingDown, Clock, DollarSign } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -13,6 +12,7 @@ interface RoutingDecision {
   reason: string;
   costSavings: number;
   latencyReduction: number;
+  bandwidthSaved: number;
 }
 
 export default function RoutingEngine() {
@@ -35,7 +35,8 @@ export default function RoutingEngine() {
         routeType: isSatelliteToHub ? 'satellite-to-hub' : 'hub-to-earth',
         reason: '',
         costSavings: Math.floor(Math.random() * 1000) + 200,
-        latencyReduction: Math.floor(Math.random() * 80) + 10,
+        latencyReduction: Math.floor(Math.random() * 45) + 8,
+        bandwidthSaved: Math.floor(Math.random() * 20) + 20,
       };
 
       if (newDecision.routeType === 'satellite-to-hub') {
@@ -44,11 +45,7 @@ export default function RoutingEngine() {
         newDecision.reason = 'Downlinking processed data to Earth center';
       }
 
-      setDecisions((prev) => {
-        const newDecisions = [newDecision, ...prev.slice(0, 4)];
-        // Keep only last 5 decisions to prevent memory buildup
-        return newDecisions.slice(0, 5);
-      });
+      setDecisions((prev) => [newDecision, ...prev.slice(0, 4)]);
     }, Math.floor(Math.random() * 2000) + 2000); // Random interval between 2-4 seconds
 
     return () => clearInterval(interval);
@@ -113,7 +110,7 @@ export default function RoutingEngine() {
                 </div>
                 <div className="flex items-center gap-1 text-primary">
                   <TrendingDown className="w-3 h-3" />
-                  <span>45% bandwidth</span>
+                  <span>{decision.bandwidthSaved}% bandwidth</span>
                 </div>
               </div>
             </div>

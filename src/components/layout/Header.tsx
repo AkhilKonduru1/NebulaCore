@@ -1,4 +1,4 @@
-import { Badge } from '@/components/ui/badge';
+import { Badge } from '@/components/ui';
 import { Satellite } from 'lucide-react';
 
 export default function Header() {

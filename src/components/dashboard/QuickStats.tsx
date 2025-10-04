@@ -1,31 +1,31 @@
-import { Card } from '@/components/ui/card';
+import { Card } from '@/components/ui';
 import { TrendingDown, Zap, DollarSign, Clock } from 'lucide-react';
 
 const stats = [
   {
     label: 'Cost Reduction',
-    value: '35%',
+    value: '22%',
     icon: DollarSign,
     color: 'text-success',
     bg: 'bg-success/10',
   },
   {
     label: 'Bandwidth Saved',
-    value: '45%',
+    value: '28%',
     icon: TrendingDown,
     color: 'text-primary',
     bg: 'bg-primary/10',
   },
   {
     label: 'Response Time',
-    value: '8min',
+    value: '12min',
     icon: Clock,
     color: 'text-secondary',
     bg: 'bg-secondary/10',
   },
   {
     label: 'Faster Processing',
-    value: '60%',
+    value: '35%',
     icon: Zap,
     color: 'text-warning',
     bg: 'bg-warning/10',

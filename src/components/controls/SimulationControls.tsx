@@ -1,5 +1,4 @@
-import { Card } from '@/components/ui/card';
-import { Slider } from '@/components/ui/slider';
+import { Card, Slider } from '@/components/ui';
 import { FastForward } from 'lucide-react';
 import { useState } from 'react';
 

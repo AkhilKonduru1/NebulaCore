@@ -1,4 +1,4 @@
-import { Card } from '@/components/ui/card';
+import { Card, Badge } from '@/components/ui';
 import { TrendingDown, DollarSign, Zap, Database } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -23,13 +23,12 @@ export default function EconomicsDashboard() {
         const newTraditionalCost = prev.traditionalCost + Math.random() * 800 + 200;
         const newEdgeCost = prev.edgeCost + Math.random() * 300 + 100;
         const newBandwidthSaved = prev.bandwidthSaved + Math.random() * 15 + 5;
-        const newTimeSaved = Math.min(prev.timeSaved + Math.random() * 0.2 + 0.1, 55);
+        const newTimeSaved = Math.min(prev.timeSaved + Math.random() * 0.15 + 0.05, 35);
         
-        // Reset if values get too high
         return {
-          traditionalCost: newTraditionalCost > 50000 ? Math.random() * 2000 + 1000 : newTraditionalCost,
-          edgeCost: newEdgeCost > 20000 ? Math.random() * 800 + 400 : newEdgeCost,
-          bandwidthSaved: newBandwidthSaved > 1000 ? Math.random() * 50 + 10 : newBandwidthSaved,
+          traditionalCost: Math.min(newTraditionalCost, 50000),
+          edgeCost: Math.min(newEdgeCost, 20000),
+          bandwidthSaved: Math.min(newBandwidthSaved, 1000),
           timeSaved: newTimeSaved,
         };
       });
@@ -126,7 +125,7 @@ export default function EconomicsDashboard() {
           📊 Projected Annual Savings
         </div>
         <div className="text-2xl font-bold text-primary font-mono">
-          $1.2M
+          $850K
         </div>
         <div className="text-xs text-muted-foreground mt-1">
           Based on current session performance
@@ -136,10 +135,3 @@ export default function EconomicsDashboard() {
   );
 }
 
-function Badge({ children, className }: { children: React.ReactNode; className?: string }) {
-  return (
-    <span className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-semibold ${className}`}>
-      {children}
-    </span>
-  );
-}

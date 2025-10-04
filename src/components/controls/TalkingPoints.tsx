@@ -1,4 +1,4 @@
-import { Card } from '@/components/ui/card';
+import { Card } from '@/components/ui';
 import { Lightbulb } from 'lucide-react';
 
 const talkingPoints = [

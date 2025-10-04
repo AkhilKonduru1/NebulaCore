@@ -1,9 +1,4 @@
-import Header from '@/components/Header';
-import EarthScene from '@/components/EarthScene';
-import RoutingEngine from '@/components/RoutingEngine';
-import EconomicsDashboard from '@/components/EconomicsDashboard';
-import QuickStats from '@/components/QuickStats';
-import SatelliteSizeOptimization from '@/components/SatelliteSizeOptimization';
+import { Header, EarthScene, RoutingEngine, EconomicsDashboard, QuickStats, SatelliteSizeOptimization } from '@/components';
 
 const Index = () => {
   return (

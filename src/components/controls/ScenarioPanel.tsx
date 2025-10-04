@@ -1,6 +1,4 @@
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { Card, Button, Badge } from '@/components/ui';
 import { Flame, Cloud, Satellite, Play, RotateCcw } from 'lucide-react';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';

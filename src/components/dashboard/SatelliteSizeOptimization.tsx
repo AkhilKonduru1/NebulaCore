@@ -1,6 +1,5 @@
-import { Card } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { TrendingDown, Shield, Zap, Target, Activity, ArrowRight } from 'lucide-react';
+import { Card, Badge } from '@/components/ui';
+import { TrendingDown, Zap, ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 interface SatelliteSizeComparison {
@@ -28,7 +27,7 @@ export default function SatelliteSizeOptimization() {
         type: 'traditional',
         size: 100,
         processingPower: 85,
-        collisionRisk: 15.2,
+        collisionRisk: 12.8,
         dataTransmission: 100,
         costSavings: 0,
         description: 'Heavy onboard processors, high collision risk'
@@ -50,9 +49,9 @@ export default function SatelliteSizeOptimization() {
         type: 'edge-enabled',
         size: 25,
         processingPower: 15,
-        collisionRisk: 8.2,
+        collisionRisk: 7.1,
         dataTransmission: 20,
-        costSavings: 45,
+        costSavings: 32,
         description: 'Minimal onboard processing, offloads to hub'
       },
       {
@@ -61,25 +60,19 @@ export default function SatelliteSizeOptimization() {
         type: 'edge-enabled',
         size: 10,
         processingPower: 5,
-        collisionRisk: 4.8,
+        collisionRisk: 4.2,
         dataTransmission: 10,
-        costSavings: 55,
+        costSavings: 38,
         description: 'Ultra-lightweight, maximum safety'
       }
     ];
 
     setSatellites(satelliteData);
 
-    // Simulate network effect growth with reset limits
+    // Simulate network effect growth
     const interval = setInterval(() => {
-      setNetworkEffect(prev => {
-        const newValue = prev + 0.5;
-        return newValue > 100 ? Math.random() * 20 + 10 : newValue;
-      });
-      setTotalCollisionReduction(prev => {
-        const newValue = prev + 0.3;
-        return newValue > 45.2 ? Math.random() * 10 + 5 : newValue;
-      });
+      setNetworkEffect(prev => Math.min(prev + 0.5, 100));
+      setTotalCollisionReduction(prev => Math.min(prev + 0.3, 28.5));
     }, 2000);
 
     return () => clearInterval(interval);
@@ -221,19 +214,19 @@ export default function SatelliteSizeOptimization() {
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-primary/10 p-3 rounded">
             <div className="text-sm font-semibold text-primary mb-1">Launch Cost</div>
-            <div className="text-xs text-muted-foreground">75% reduction in launch mass</div>
+            <div className="text-xs text-muted-foreground">45% reduction in launch mass</div>
           </div>
           <div className="bg-success/10 p-3 rounded">
             <div className="text-sm font-semibold text-success mb-1">Collision Risk</div>
-            <div className="text-xs text-muted-foreground">45.2% lower probability</div>
+            <div className="text-xs text-muted-foreground">28.5% lower probability</div>
           </div>
           <div className="bg-secondary/10 p-3 rounded">
             <div className="text-sm font-semibold text-secondary mb-1">Power Consumption</div>
-            <div className="text-xs text-muted-foreground">70% less onboard processing</div>
+            <div className="text-xs text-muted-foreground">52% less onboard processing</div>
           </div>
           <div className="bg-warning/10 p-3 rounded">
             <div className="text-sm font-semibold text-warning mb-1">Data Efficiency</div>
-            <div className="text-xs text-muted-foreground">60% bandwidth reduction</div>
+            <div className="text-xs text-muted-foreground">28% bandwidth reduction</div>
           </div>
         </div>
       </Card>
