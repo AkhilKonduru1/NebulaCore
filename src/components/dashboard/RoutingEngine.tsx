@@ -83,11 +83,11 @@ export default function RoutingEngine() {
                     {decision.destination}
                   </span>
                   <Badge
-                    className={
+                    className={`text-xs whitespace-nowrap ml-1 ${
                       decision.routeType === 'satellite-to-hub'
                         ? 'bg-teal-500 text-white'
                         : 'bg-orange-500 text-white'
-                    }
+                    }`}
                   >
                     {decision.routeType === 'satellite-to-hub' ? 'To Hub' : 'To Earth'}
                   </Badge>

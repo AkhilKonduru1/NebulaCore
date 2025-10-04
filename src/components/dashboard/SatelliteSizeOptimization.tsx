@@ -1,5 +1,5 @@
 import { Card, Badge } from '@/components/ui';
-import { TrendingDown, Zap, ArrowRight } from 'lucide-react';
+import { TrendingDown, Zap, ArrowRight, Radio, Wifi, Satellite } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 interface SatelliteSizeComparison {
@@ -193,7 +193,7 @@ export default function SatelliteSizeOptimization() {
                   </span>
                 </div>
                 <div className="text-xs text-muted-foreground mt-1">
-                  {satellite.costSavings}% cost reduction • {100 - satellite.collisionRisk}% safer
+                  {satellite.costSavings}% cost reduction • {satellite.id === 'edge-small' ? '20' : '23'}% safer
                 </div>
               </div>
             )}
@@ -224,6 +224,52 @@ export default function SatelliteSizeOptimization() {
           <div className="bg-warning/10 p-3">
             <div className="text-sm font-semibold text-warning mb-1">Data Efficiency</div>
             <div className="text-xs text-muted-foreground">28% bandwidth reduction</div>
+          </div>
+        </div>
+      </Card>
+
+      {/* LEO Hub Laser Data Transport */}
+      <Card className="p-4 bg-card border-border">
+        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+          <Satellite className="w-4 h-4 text-primary" />
+          LEO Hub Laser Data Transport
+        </h3>
+        
+        <div className="text-xs text-muted-foreground mb-3">
+          Advanced laser communication technology for efficient data transport from satellites to ground stations.
+        </div>
+
+        <div className="grid grid-cols-2 gap-3">
+          <div className="bg-primary/10 p-3">
+            <div className="flex items-center gap-2 mb-1">
+              <Radio className="w-4 h-4 text-primary" />
+            </div>
+            <div className="text-lg font-bold text-primary font-mono">1.2 Gbps</div>
+            <div className="text-xs text-muted-foreground">Laser Speed</div>
+          </div>
+          
+          <div className="bg-secondary/10 p-3">
+            <div className="flex items-center gap-2 mb-1">
+              <Wifi className="w-4 h-4 text-secondary" />
+            </div>
+            <div className="text-lg font-bold text-secondary font-mono">95%</div>
+            <div className="text-xs text-muted-foreground">Less Interference</div>
+          </div>
+          
+          <div className="bg-success/10 p-3">
+            <div className="flex items-center gap-2 mb-1">
+              <Zap className="w-4 h-4 text-success" />
+            </div>
+            <div className="text-lg font-bold text-success font-mono">60%</div>
+            <div className="text-xs text-muted-foreground">Power Savings</div>
+          </div>
+          
+          <div className="bg-warning/10 p-3">
+            <div className="flex items-center gap-2 mb-1">
+              <ArrowRight className="w-4 h-4 text-warning" />
+            </div>
+            <div className="text-lg font-bold text-warning font-mono">85%</div>
+            <div className="text-xs text-muted-foreground">Data Compression</div>
           </div>
         </div>
       </Card>
