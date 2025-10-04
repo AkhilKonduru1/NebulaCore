@@ -45,7 +45,7 @@ export default function SatelliteSizeOptimization() {
       },
       {
         id: 'edge-small',
-        name: 'Edge-on-LEO Small Sat',
+        name: 'Nebula Core Small Sat',
         type: 'edge-enabled',
         size: 25,
         processingPower: 15,
@@ -56,7 +56,7 @@ export default function SatelliteSizeOptimization() {
       },
       {
         id: 'edge-micro',
-        name: 'Edge-on-LEO Micro Sat',
+        name: 'Nebula Core Micro Sat',
         type: 'edge-enabled',
         size: 10,
         processingPower: 5,
@@ -83,10 +83,7 @@ export default function SatelliteSizeOptimization() {
   };
 
   const getSizeIcon = (size: number) => {
-    if (size >= 80) return '🛰️';
-    if (size >= 40) return '🛸';
-    if (size >= 20) return '📡';
-    return '📱';
+    return '';
   };
 
   return (
@@ -131,9 +128,9 @@ export default function SatelliteSizeOptimization() {
                   <span className="text-xs text-muted-foreground">Size</span>
                   <span className="text-sm font-semibold text-foreground">{satellite.size}%</span>
                 </div>
-                <div className="w-full bg-muted rounded-full h-2">
+                <div className="w-full bg-muted h-2">
                   <div 
-                    className={`h-2 rounded-full ${
+                    className={`h-2 ${
                       satellite.type === 'traditional' ? 'bg-red-500' : 'bg-green-500'
                     }`}
                     style={{ width: `${satellite.size}%` }}
@@ -150,9 +147,9 @@ export default function SatelliteSizeOptimization() {
                     {satellite.collisionRisk}%
                   </span>
                 </div>
-                <div className="w-full bg-muted rounded-full h-2">
+                <div className="w-full bg-muted h-2">
                   <div 
-                    className={`h-2 rounded-full ${
+                    className={`h-2 ${
                       satellite.collisionRisk > 10 ? 'bg-red-500' : 'bg-green-500'
                     }`}
                     style={{ width: `${satellite.collisionRisk * 5}%` }}
@@ -165,9 +162,9 @@ export default function SatelliteSizeOptimization() {
                   <span className="text-xs text-muted-foreground">Onboard Processing</span>
                   <span className="text-sm font-semibold text-foreground">{satellite.processingPower}%</span>
                 </div>
-                <div className="w-full bg-muted rounded-full h-2">
+                <div className="w-full bg-muted h-2">
                   <div 
-                    className="h-2 rounded-full bg-blue-500"
+                    className="h-2 bg-blue-500"
                     style={{ width: `${satellite.processingPower}%` }}
                   />
                 </div>
@@ -175,12 +172,12 @@ export default function SatelliteSizeOptimization() {
 
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground">Data to Ground</span>
+                  <span className="text-xs text-muted-foreground">Unnecessary Data to Earth</span>
                   <span className="text-sm font-semibold text-foreground">{satellite.dataTransmission}%</span>
                 </div>
-                <div className="w-full bg-muted rounded-full h-2">
+                <div className="w-full bg-muted h-2">
                   <div 
-                    className="h-2 rounded-full bg-orange-500"
+                    className="h-2 bg-orange-500"
                     style={{ width: `${satellite.dataTransmission}%` }}
                   />
                 </div>
@@ -188,11 +185,11 @@ export default function SatelliteSizeOptimization() {
             </div>
 
             {satellite.type === 'edge-enabled' && (
-              <div className="mt-3 p-2 bg-green-500/10 rounded border border-green-500/20">
+              <div className="mt-3 p-2 bg-green-500/10 border border-green-500/20">
                 <div className="flex items-center gap-2">
                   <ArrowRight className="w-4 h-4 text-green-500" />
                   <span className="text-xs text-green-500 font-semibold">
-                    Processing offloaded to Edge-on-LEO Hub
+                    Processing offloaded to Nebula Core Hub
                   </span>
                 </div>
                 <div className="text-xs text-muted-foreground mt-1">
@@ -212,19 +209,19 @@ export default function SatelliteSizeOptimization() {
         </h3>
         
         <div className="grid grid-cols-2 gap-3">
-          <div className="bg-primary/10 p-3 rounded">
+          <div className="bg-primary/10 p-3">
             <div className="text-sm font-semibold text-primary mb-1">Launch Cost</div>
             <div className="text-xs text-muted-foreground">45% reduction in launch mass</div>
           </div>
-          <div className="bg-success/10 p-3 rounded">
+          <div className="bg-success/10 p-3">
             <div className="text-sm font-semibold text-success mb-1">Collision Risk</div>
             <div className="text-xs text-muted-foreground">28.5% lower probability</div>
           </div>
-          <div className="bg-secondary/10 p-3 rounded">
+          <div className="bg-secondary/10 p-3">
             <div className="text-sm font-semibold text-secondary mb-1">Power Consumption</div>
             <div className="text-xs text-muted-foreground">52% less onboard processing</div>
           </div>
-          <div className="bg-warning/10 p-3 rounded">
+          <div className="bg-warning/10 p-3">
             <div className="text-sm font-semibold text-warning mb-1">Data Efficiency</div>
             <div className="text-xs text-muted-foreground">28% bandwidth reduction</div>
           </div>

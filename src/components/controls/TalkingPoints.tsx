@@ -75,8 +75,8 @@ export default function TalkingPoints() {
         ))}
       </div>
 
-      <div className="text-xs text-muted-foreground text-center p-2 bg-muted/50 rounded-lg">
-        💡 Reference guide for presentations
+      <div className="text-xs text-muted-foreground text-center p-2 bg-muted/50">
+        Reference guide for presentations
       </div>
     </div>
   );

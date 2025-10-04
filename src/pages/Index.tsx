@@ -7,7 +7,7 @@ const Index = () => {
       
       <div className="grid grid-cols-12 gap-4 p-4 h-[calc(100vh-88px)]">
         {/* Center - 3D Earth View */}
-        <div className="col-span-8 rounded-xl overflow-hidden border border-border shadow-card bg-card/30 backdrop-blur-sm">
+        <div className="col-span-8 overflow-hidden bg-black">
           <EarthScene />
         </div>
 

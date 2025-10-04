@@ -29,8 +29,8 @@ export default function RoutingEngine() {
       const newDecision: RoutingDecision = {
         id: Date.now().toString(),
         timestamp: new Date(),
-        sourceSatellite: isSatelliteToHub ? edgeSatellites[Math.floor(Math.random() * edgeSatellites.length)] : 'LEO Data Hub',
-        destination: isSatelliteToHub ? 'LEO Data Hub' : earthCenters[Math.floor(Math.random() * earthCenters.length)],
+        sourceSatellite: isSatelliteToHub ? edgeSatellites[Math.floor(Math.random() * edgeSatellites.length)] : 'Nebula Core Hub',
+        destination: isSatelliteToHub ? 'Nebula Core Hub' : earthCenters[Math.floor(Math.random() * earthCenters.length)],
         dataSize: Math.floor(Math.random() * 500) + 100,
         routeType: isSatelliteToHub ? 'satellite-to-hub' : 'hub-to-earth',
         reason: '',
@@ -40,7 +40,7 @@ export default function RoutingEngine() {
       };
 
       if (newDecision.routeType === 'satellite-to-hub') {
-        newDecision.reason = 'Sending raw data to LEO Data Hub for processing';
+        newDecision.reason = 'Sending raw data to Nebula Core Hub for processing';
       } else {
         newDecision.reason = 'Downlinking processed data to Earth center';
       }
@@ -62,14 +62,14 @@ export default function RoutingEngine() {
 
       <Card className="p-4 bg-card border-border">
         <div className="text-sm text-muted-foreground mb-4">
-          Real-time routing: Edge satellites → LEO Data Hub → Earth centers
+          Real-time routing: Edge satellites → Nebula Core Hub → Earth centers
         </div>
 
         <div className="space-y-3">
           {decisions.map((decision, index) => (
             <div
               key={decision.id}
-              className={`p-3 rounded-lg border ${
+              className={`p-3 border ${
                 index === 0 ? 'border-primary bg-primary/5' : 'border-border bg-muted/30'
               }`}
             >

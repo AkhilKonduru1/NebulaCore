@@ -40,7 +40,7 @@ export default function QuickStats() {
         {stats.map((stat, idx) => (
           <div
             key={idx}
-            className={`${stat.bg} p-3 rounded-lg`}
+            className={`${stat.bg} p-3`}
           >
             <div className="flex items-center justify-between mb-1">
               <stat.icon className={`w-4 h-4 ${stat.color}`} />

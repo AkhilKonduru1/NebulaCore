@@ -47,13 +47,13 @@ All colors MUST be HSL.
     --input: 220 20% 18%;
     --ring: 168 70% 52%;
 
-    --radius: 0.75rem;
+    --radius: 0.25rem;
 
     /* Gradients */
-    --gradient-space: linear-gradient(135deg, hsl(220, 30%, 8%), hsl(240, 40%, 12%));
+    --gradient-space: hsl(220, 30%, 8%);
     
     /* Shadows */
-    --shadow-card: 0 4px 16px hsl(220 30% 4% / 0.2);
+    --shadow-card: 0 2px 8px hsl(220 30% 4% / 0.1);
   }
 }
 
@@ -78,7 +78,7 @@ All colors MUST be HSL.
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-muted rounded-full;
+    @apply bg-muted;
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -87,45 +87,12 @@ All colors MUST be HSL.
 }
 
 /* Custom animations */
-@keyframes pulse-glow {
-  0%, 100% {
-    opacity: 1;
-    filter: drop-shadow(0 0 4px currentColor);
-  }
-  50% {
-    opacity: 0.6;
-    filter: drop-shadow(0 0 12px currentColor);
-  }
-}
-
 @keyframes orbit {
   from {
     transform: rotate(0deg) translateX(100px) rotate(0deg);
   }
   to {
     transform: rotate(360deg) translateX(100px) rotate(-360deg);
-  }
-}
-
-@keyframes data-flow {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100px) scale(0);
-    opacity: 0;
-  }
-}
-
-@keyframes counter-up {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 

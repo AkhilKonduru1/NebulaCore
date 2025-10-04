@@ -55,7 +55,7 @@ export default function EconomicsDashboard() {
         <Card className="p-4 bg-card border-border">
           <div className="flex items-start justify-between mb-2">
             <div className="text-sm text-muted-foreground">Traditional</div>
-            <div className="p-2 rounded-lg bg-destructive/10">
+            <div className="p-2 bg-destructive/10">
               <TrendingDown className="w-4 h-4 text-destructive rotate-180" />
             </div>
           </div>
@@ -70,7 +70,7 @@ export default function EconomicsDashboard() {
         <Card className="p-4 bg-primary/10 border-primary">
           <div className="flex items-start justify-between mb-2">
             <div className="text-sm text-primary font-semibold">Nebula Core</div>
-            <div className="p-2 rounded-lg bg-primary/20">
+            <div className="p-2 bg-primary/20">
               <TrendingDown className="w-4 h-4 text-primary" />
             </div>
           </div>
@@ -122,7 +122,7 @@ export default function EconomicsDashboard() {
 
       <Card className="p-4 bg-primary/20 border-primary">
         <div className="text-sm font-semibold text-foreground mb-2">
-          📊 Projected Annual Savings
+          Projected Annual Savings
         </div>
         <div className="text-2xl font-bold text-primary font-mono">
           $850K

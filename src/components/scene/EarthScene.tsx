@@ -12,8 +12,8 @@ interface Satellite {
 
 const satellites: Satellite[] = [
   {
-    id: 'leo-hub',
-    name: 'LEO Data Hub',
+    id: 'nebula-hub',
+    name: 'Nebula Core Hub',
     type: 'earth-observation',
     color: '#FF6B6B',
     radius: 120,
@@ -73,32 +73,47 @@ export default function EarthScene() {
       if (!container) return;
       
       const containerRect = container.getBoundingClientRect();
-      const size = Math.min(containerRect.width, containerRect.height, 600);
+      const containerAspect = containerRect.width / containerRect.height;
       
-      canvas.width = size;
-      canvas.height = size;
+      // Use the smaller dimension to ensure the canvas fits in the container
+      const maxSize = Math.min(containerRect.width, containerRect.height);
+      
+      // Set canvas size to maintain square aspect ratio
+      canvas.width = maxSize;
+      canvas.height = maxSize;
+      
+      // Set CSS size to fill container while maintaining aspect ratio
+      if (containerAspect > 1) {
+        // Container is wider than tall
+        canvas.style.width = `${maxSize}px`;
+        canvas.style.height = `${maxSize}px`;
+        canvas.style.margin = '0 auto';
+      } else {
+        // Container is taller than wide
+        canvas.style.width = `${maxSize}px`;
+        canvas.style.height = `${maxSize}px`;
+        canvas.style.margin = 'auto 0';
+      }
     };
 
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
-
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const earthRadius = Math.min(canvas.width, canvas.height) * 0.15;
 
     // Load Earth image
     const earthImage = new Image();
     earthImage.src = '/earth.png';
 
     const animate = () => {
-      // Recalculate dimensions for responsive scaling
-      const currentCenterX = canvas.width / 2;
-      const currentCenterY = canvas.height / 2;
-      const currentEarthRadius = Math.min(canvas.width, canvas.height) * 0.12;
+      // Get current canvas dimensions
+      const currentWidth = canvas.width;
+      const currentHeight = canvas.height;
+      const currentCenterX = currentWidth / 2;
+      const currentCenterY = currentHeight / 2;
+      const currentEarthRadius = Math.min(currentWidth, currentHeight) * 0.15;
       
       // Clear canvas
       ctx.fillStyle = '#0a0a0a';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, currentWidth, currentHeight);
 
       // Draw Earth image as perfect circle
       if (earthImage.complete) {
@@ -109,19 +124,22 @@ export default function EarthScene() {
         
         // Calculate image dimensions to maintain aspect ratio and fill circle
         const imageAspect = earthImage.width / earthImage.height;
-        let drawWidth = currentEarthRadius * 2;
-        let drawHeight = currentEarthRadius * 2;
-        let drawX = currentCenterX - currentEarthRadius;
-        let drawY = currentCenterY - currentEarthRadius;
+        const circleDiameter = currentEarthRadius * 2;
+        
+        let drawWidth, drawHeight, drawX, drawY;
         
         if (imageAspect > 1) {
-          // Image is wider than tall
-          drawHeight = drawWidth / imageAspect;
-          drawY = currentCenterY - drawHeight / 2;
-        } else {
-          // Image is taller than wide
+          // Image is wider than tall - fit height to circle diameter
+          drawHeight = circleDiameter;
           drawWidth = drawHeight * imageAspect;
           drawX = currentCenterX - drawWidth / 2;
+          drawY = currentCenterY - drawHeight / 2;
+        } else {
+          // Image is taller than wide - fit width to circle diameter
+          drawWidth = circleDiameter;
+          drawHeight = drawWidth / imageAspect;
+          drawX = currentCenterX - drawWidth / 2;
+          drawY = currentCenterY - drawHeight / 2;
         }
         
         ctx.drawImage(earthImage, drawX, drawY, drawWidth, drawHeight);
@@ -152,7 +170,7 @@ export default function EarthScene() {
         // Update satellite position
         satellite.angle += satellite.speed;
         
-        // Scale satellite radius proportionally with better scaling
+        // Scale satellite radius proportionally
         const baseRadius = 80;
         const scaleFactor = currentEarthRadius / baseRadius;
         const scaledRadius = satellite.radius * scaleFactor;
@@ -170,8 +188,8 @@ export default function EarthScene() {
         const x = currentCenterX + Math.cos(satellite.angle) * scaledRadius;
         const y = currentCenterY + Math.sin(satellite.angle) * scaledRadius;
 
-        // Scale satellite size proportionally with better scaling
-        const baseSatelliteSize = satellite.id === 'leo-hub' ? 6 : 4;
+        // Scale satellite size proportionally
+        const baseSatelliteSize = satellite.id === 'nebula-hub' ? 6 : 4;
         const satelliteSize = Math.max(baseSatelliteSize * scaleFactor, 2);
 
         // Draw satellite
@@ -196,7 +214,7 @@ export default function EarthScene() {
 
       {/* Satellite Key/Legend */}
       <div className="absolute bottom-4 right-4 pointer-events-none" style={{ zIndex: 2 }}>
-        <div className="bg-black/50 rounded-lg p-3 border border-white/10">
+        <div className="bg-black/50 p-3 border border-white/10">
           <h3 className="text-white font-bold text-xs mb-2 uppercase">Satellites</h3>
           <div className="space-y-1">
             {satellites
@@ -204,7 +222,7 @@ export default function EarthScene() {
               .map((satellite) => (
                 <div key={satellite.id} className="flex items-center gap-2">
                   <div 
-                    className="w-3 h-3 rounded-full"
+                    className="w-3 h-3"
                     style={{ 
                       backgroundColor: satellite.color
                     }}

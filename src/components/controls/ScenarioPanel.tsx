@@ -49,7 +49,7 @@ export default function ScenarioPanel() {
     setIsRunning(true);
 
     toast({
-      title: `🚀 ${scenario.name} Started`,
+      title: `${scenario.name} Started`,
       description: scenario.description,
       duration: 3000,
     });
@@ -58,7 +58,7 @@ export default function ScenarioPanel() {
     setTimeout(() => {
       setIsRunning(false);
       toast({
-        title: `✅ ${scenario.name} Complete`,
+        title: `${scenario.name} Complete`,
         description: `Demonstrated ${scenario.duration}s scenario successfully`,
         duration: 3000,
       });
@@ -69,7 +69,7 @@ export default function ScenarioPanel() {
     setActiveScenario(null);
     setIsRunning(false);
     toast({
-      title: '🔄 Demo Reset',
+      title: 'Demo Reset',
       description: 'Ready for next presentation',
       duration: 2000,
     });
@@ -121,7 +121,7 @@ export default function ScenarioPanel() {
                   {scenario.description}
                 </p>
                 <div className="mt-2 text-xs text-muted-foreground">
-                  ⏱️ {scenario.duration}s demo
+                  {scenario.duration}s demo
                 </div>
               </div>
             </div>
@@ -140,7 +140,7 @@ export default function ScenarioPanel() {
               <div className="h-full bg-primary w-full" />
             </div>
             <p className="text-xs text-muted-foreground">
-              💡 Tip: Explain the cost savings while this runs
+              Tip: Explain the cost savings while this runs
             </p>
           </div>
         </Card>

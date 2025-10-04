@@ -92,10 +92,7 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
         "orbit": "orbit 60s linear infinite",
-        "data-flow": "data-flow 2s ease-in-out infinite",
-        "counter-up": "counter-up 0.5s ease-out",
       },
     },
   },
