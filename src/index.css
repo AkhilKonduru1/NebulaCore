@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Deep space theme */
+    --background: 220 30% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 25% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 25% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Teal accent - Nebula Core brand */
+    --primary: 168 70% 52%;
+    --primary-foreground: 220 30% 8%;
+
+    /* Electric blue for data/tech elements */
+    --secondary: 210 100% 65%;
+    --secondary-foreground: 220 30% 8%;
+
+    --muted: 220 20% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 168 70% 52%;
+    --accent-foreground: 220 30% 8%;
+
+    /* Cost/warning amber */
+    --warning: 38 92% 65%;
+    --warning-foreground: 220 30% 8%;
+
+    /* Savings green */
+    --success: 158 64% 52%;
+    --success-foreground: 220 30% 8%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 20% 22%;
+    --input: 220 20% 18%;
+    --ring: 168 70% 52%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-space: linear-gradient(135deg, hsl(220, 30%, 8%), hsl(240, 40%, 12%));
+    --gradient-teal: linear-gradient(135deg, hsl(168, 70%, 52%), hsl(168, 80%, 42%));
+    --gradient-data: linear-gradient(90deg, hsl(210, 100%, 65%), hsl(190, 100%, 55%));
+    
+    /* Shadows */
+    --shadow-glow-teal: 0 0 20px hsl(168 70% 52% / 0.3);
+    --shadow-glow-blue: 0 0 20px hsl(210 100% 65% / 0.3);
+    --shadow-card: 0 8px 32px hsl(220 30% 4% / 0.4);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Space-themed scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary;
+  }
+}
+
+/* Custom animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 4px currentColor);
+  }
+  50% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 12px currentColor);
+  }
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(100px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(100px) rotate(-360deg);
+  }
+}
+
+@keyframes data-flow {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes counter-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
