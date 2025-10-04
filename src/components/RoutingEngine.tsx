@@ -71,8 +71,8 @@ export default function RoutingEngine() {
           {decisions.map((decision, index) => (
             <div
               key={decision.id}
-              className={`p-3 rounded-lg border transition-all duration-300 ${
-                index === 0 ? 'border-primary bg-primary/5 animate-counter-up' : 'border-border bg-muted/30'
+              className={`p-3 rounded-lg border ${
+                index === 0 ? 'border-primary bg-primary/5' : 'border-border bg-muted/30'
               }`}
             >
               <div className="flex items-center justify-between mb-2">

@@ -96,10 +96,10 @@ export default function ScenarioPanel() {
         {scenarios.map((scenario) => (
           <Card
             key={scenario.id}
-            className={`p-3 border transition-all duration-300 cursor-pointer hover:scale-[1.02] ${
+            className={`p-3 border ${
               activeScenario === scenario.id
                 ? 'border-primary bg-primary/10 shadow-glow-teal'
-                : 'border-border bg-card hover:border-primary/50'
+                : 'border-border bg-card'
             }`}
             onClick={() => !isRunning && runScenario(scenario)}
           >
@@ -113,7 +113,7 @@ export default function ScenarioPanel() {
                     {scenario.name}
                   </h3>
                   {activeScenario === scenario.id && isRunning && (
-                    <Badge className="bg-primary text-primary-foreground animate-pulse-glow">
+                    <Badge className="bg-primary text-primary-foreground">
                       <Play className="w-3 h-3 mr-1" />
                       Active
                     </Badge>
@@ -132,14 +132,14 @@ export default function ScenarioPanel() {
       </div>
 
       {activeScenario && isRunning && (
-        <Card className="p-4 bg-gradient-to-r from-primary/20 to-secondary/20 border-primary animate-fade-in">
+        <Card className="p-4 bg-gradient-to-r from-primary/20 to-secondary/20 border-primary">
           <div className="space-y-2">
             <div className="flex items-center justify-between text-sm">
               <span className="text-foreground font-semibold">Scenario Progress</span>
               <span className="text-primary">Running...</span>
             </div>
             <div className="h-2 bg-muted rounded-full overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-primary to-secondary animate-pulse w-full" />
+              <div className="h-full bg-gradient-to-r from-primary to-secondary w-full" />
             </div>
             <p className="text-xs text-muted-foreground">
               💡 Tip: Explain the cost savings while this runs

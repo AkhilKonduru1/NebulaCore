@@ -128,6 +128,7 @@ const satellites: Satellite[] = [
   },
 ];
 
+
 export default function EarthScene() {
   return (
     <div className="w-full h-full relative">

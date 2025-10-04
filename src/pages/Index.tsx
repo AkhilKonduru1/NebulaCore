@@ -4,6 +4,7 @@ import SatelliteStatus from '@/components/SatelliteStatus';
 import RoutingEngine from '@/components/RoutingEngine';
 import EconomicsDashboard from '@/components/EconomicsDashboard';
 import QuickStats from '@/components/QuickStats';
+import SatelliteSizeOptimization from '@/components/SatelliteSizeOptimization';
 
 const Index = () => {
   return (
@@ -22,6 +23,7 @@ const Index = () => {
           <SatelliteStatus />
           <RoutingEngine />
           <EconomicsDashboard />
+          <SatelliteSizeOptimization />
         </div>
       </div>
     </div>
