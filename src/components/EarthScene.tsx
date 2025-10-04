@@ -145,8 +145,8 @@ export default function EarthScene() {
 
       {/* Satellite Key/Legend */}
       <div className="absolute bottom-4 right-4 pointer-events-none" style={{ zIndex: 2 }}>
-        <div className="bg-black/70 backdrop-blur-sm rounded-lg p-3 border border-white/20">
-          <h3 className="text-white/90 font-bold text-xs mb-2 uppercase tracking-wide">Satellites</h3>
+        <div className="bg-black/50 rounded-lg p-3 border border-white/10">
+          <h3 className="text-white font-bold text-xs mb-2 uppercase">Satellites</h3>
           <div className="space-y-1">
             {satellites
               .sort((a, b) => a.radius - b.radius)
@@ -155,11 +155,10 @@ export default function EarthScene() {
                   <div 
                     className="w-3 h-3 rounded-full"
                     style={{ 
-                      backgroundColor: satellite.color,
-                      boxShadow: `0 0 8px ${satellite.color}`
+                      backgroundColor: satellite.color
                     }}
                   />
-                  <span className="text-white/80 text-xs font-mono">{satellite.name}</span>
+                  <span className="text-white text-xs">{satellite.name}</span>
                 </div>
               ))}
           </div>

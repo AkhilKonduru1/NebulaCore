@@ -51,16 +51,9 @@ All colors MUST be HSL.
 
     /* Gradients */
     --gradient-space: linear-gradient(135deg, hsl(220, 30%, 8%), hsl(240, 40%, 12%));
-    --gradient-teal: linear-gradient(135deg, hsl(168, 70%, 52%), hsl(168, 80%, 42%));
-    --gradient-data: linear-gradient(90deg, hsl(210, 100%, 65%), hsl(190, 100%, 55%));
     
     /* Shadows */
-    --shadow-glow-teal: 0 0 20px hsl(168 70% 52% / 0.3);
-    --shadow-glow-blue: 0 0 20px hsl(210 100% 65% / 0.3);
-    --shadow-card: 0 8px 32px hsl(220 30% 4% / 0.4);
-
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-card: 0 4px 16px hsl(220 30% 4% / 0.2);
   }
 }
 

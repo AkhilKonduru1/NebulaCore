@@ -117,7 +117,7 @@ export default function EconomicsDashboard() {
         </Card>
       </div>
 
-      <Card className="p-4 bg-gradient-to-br from-primary/20 to-secondary/20 border-primary">
+      <Card className="p-4 bg-primary/20 border-primary">
         <div className="text-sm font-semibold text-foreground mb-2">
           📊 Projected Annual Savings
         </div>

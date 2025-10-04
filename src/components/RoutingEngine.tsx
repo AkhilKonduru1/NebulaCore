@@ -55,11 +55,8 @@ export default function RoutingEngine() {
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
           <Brain className="w-5 h-5 text-secondary" />
-          Routing Intelligence
+          Routing Engine
         </h2>
-        <Badge className="bg-success text-success-foreground">
-          AI-Powered
-        </Badge>
       </div>
 
       <Card className="p-4 bg-card border-border">

@@ -103,7 +103,7 @@ export default function SatelliteSizeOptimization() {
       </div>
 
       {/* Core Concept */}
-      <Card className="p-4 bg-gradient-to-r from-primary/10 to-secondary/10 border-primary">
+      <Card className="p-4 bg-primary/10 border-primary">
         <div className="text-center mb-3">
           <h3 className="text-lg font-bold text-foreground mb-2">
             🎯 "Smaller Satellites = Safer Space"
@@ -229,7 +229,7 @@ export default function SatelliteSizeOptimization() {
       </div>
 
       {/* Network Effect Visualization */}
-      <Card className="p-4 bg-gradient-to-r from-green-500/10 to-blue-500/10 border-green-500/20">
+      <Card className="p-4 bg-green-500/10 border-green-500/20">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-green-500" />
@@ -296,7 +296,7 @@ export default function SatelliteSizeOptimization() {
       </Card>
 
       {/* Industry Impact */}
-      <Card className="p-4 bg-gradient-to-r from-primary/20 to-secondary/20 border-primary text-center">
+      <Card className="p-4 bg-primary/20 border-primary text-center">
         <div className="text-lg font-bold text-primary mb-2">
           🚀 "The Smaller We Go, The Safer We Get"
         </div>

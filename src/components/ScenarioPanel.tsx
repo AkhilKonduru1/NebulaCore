@@ -132,14 +132,14 @@ export default function ScenarioPanel() {
       </div>
 
       {activeScenario && isRunning && (
-        <Card className="p-4 bg-gradient-to-r from-primary/20 to-secondary/20 border-primary">
+        <Card className="p-4 bg-primary/20 border-primary">
           <div className="space-y-2">
             <div className="flex items-center justify-between text-sm">
               <span className="text-foreground font-semibold">Scenario Progress</span>
               <span className="text-primary">Running...</span>
             </div>
             <div className="h-2 bg-muted rounded-full overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-primary to-secondary w-full" />
+              <div className="h-full bg-primary w-full" />
             </div>
             <p className="text-xs text-muted-foreground">
               💡 Tip: Explain the cost savings while this runs
