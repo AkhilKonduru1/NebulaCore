@@ -44,7 +44,11 @@ export default function RoutingEngine() {
         newDecision.reason = 'Downlinking processed data to Earth center';
       }
 
-      setDecisions((prev) => [newDecision, ...prev.slice(0, 4)]);
+      setDecisions((prev) => {
+        const newDecisions = [newDecision, ...prev.slice(0, 4)];
+        // Keep only last 5 decisions to prevent memory buildup
+        return newDecisions.slice(0, 5);
+      });
     }, Math.floor(Math.random() * 2000) + 2000); // Random interval between 2-4 seconds
 
     return () => clearInterval(interval);
@@ -109,7 +113,7 @@ export default function RoutingEngine() {
                 </div>
                 <div className="flex items-center gap-1 text-primary">
                   <TrendingDown className="w-3 h-3" />
-                  <span>70% bandwidth</span>
+                  <span>45% bandwidth</span>
                 </div>
               </div>
             </div>

@@ -1,6 +1,5 @@
 import Header from '@/components/Header';
 import EarthScene from '@/components/EarthScene';
-import SatelliteStatus from '@/components/SatelliteStatus';
 import RoutingEngine from '@/components/RoutingEngine';
 import EconomicsDashboard from '@/components/EconomicsDashboard';
 import QuickStats from '@/components/QuickStats';
@@ -20,7 +19,6 @@ const Index = () => {
         {/* Right Panel - Live Data */}
         <div className="col-span-4 space-y-4 overflow-y-auto">
           <QuickStats />
-          <SatelliteStatus />
           <RoutingEngine />
           <EconomicsDashboard />
           <SatelliteSizeOptimization />

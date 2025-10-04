@@ -27,7 +27,6 @@ export default function SimulationControls() {
             onValueChange={setSpeed}
             max={3}
             step={1}
-            className="cursor-pointer"
           />
           <div className="flex justify-between text-xs text-muted-foreground">
             <span>Slow</span>

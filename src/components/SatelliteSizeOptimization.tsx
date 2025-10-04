@@ -50,9 +50,9 @@ export default function SatelliteSizeOptimization() {
         type: 'edge-enabled',
         size: 25,
         processingPower: 15,
-        collisionRisk: 3.2,
+        collisionRisk: 8.2,
         dataTransmission: 20,
-        costSavings: 75,
+        costSavings: 45,
         description: 'Minimal onboard processing, offloads to hub'
       },
       {
@@ -61,19 +61,25 @@ export default function SatelliteSizeOptimization() {
         type: 'edge-enabled',
         size: 10,
         processingPower: 5,
-        collisionRisk: 1.8,
+        collisionRisk: 4.8,
         dataTransmission: 10,
-        costSavings: 85,
+        costSavings: 55,
         description: 'Ultra-lightweight, maximum safety'
       }
     ];
 
     setSatellites(satelliteData);
 
-    // Simulate network effect growth
+    // Simulate network effect growth with reset limits
     const interval = setInterval(() => {
-      setNetworkEffect(prev => Math.min(prev + 0.5, 100));
-      setTotalCollisionReduction(prev => Math.min(prev + 0.3, 78.5));
+      setNetworkEffect(prev => {
+        const newValue = prev + 0.5;
+        return newValue > 100 ? Math.random() * 20 + 10 : newValue;
+      });
+      setTotalCollisionReduction(prev => {
+        const newValue = prev + 0.3;
+        return newValue > 45.2 ? Math.random() * 10 + 5 : newValue;
+      });
     }, 2000);
 
     return () => clearInterval(interval);
@@ -102,29 +108,6 @@ export default function SatelliteSizeOptimization() {
         </Badge>
       </div>
 
-      {/* Core Concept */}
-      <Card className="p-4 bg-primary/10 border-primary">
-        <div className="text-center mb-3">
-          <h3 className="text-lg font-bold text-foreground mb-2">
-            🎯 "Smaller Satellites = Safer Space"
-          </h3>
-          <p className="text-sm text-muted-foreground">
-            By offloading processing to Edge-on-LEO hubs, satellites can be dramatically smaller, reducing collision risk by up to 78%
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-primary/20 p-3 rounded text-center">
-            <div className="text-2xl font-bold text-primary font-mono">78.5%</div>
-            <div className="text-xs text-muted-foreground">Collision Risk Reduction</div>
-          </div>
-          <div className="bg-secondary/20 p-3 rounded text-center">
-            <div className="text-2xl font-bold text-secondary font-mono">90%</div>
-            <div className="text-xs text-muted-foreground">Size Reduction</div>
-          </div>
-        </div>
-      </Card>
-
       {/* Satellite Comparison */}
       <div className="space-y-3">
         {satellites.map((satellite, index) => (
@@ -144,7 +127,7 @@ export default function SatelliteSizeOptimization() {
                   <p className="text-xs text-muted-foreground">{satellite.description}</p>
                 </div>
               </div>
-              <Badge className={getSizeColor(satellite.type)}>
+              <Badge className={`${getSizeColor(satellite.type)} hover:bg-current`}>
                 {satellite.type === 'traditional' ? 'Traditional' : 'Edge-Enabled'}
               </Badge>
             </div>
@@ -228,46 +211,6 @@ export default function SatelliteSizeOptimization() {
         ))}
       </div>
 
-      {/* Network Effect Visualization */}
-      <Card className="p-4 bg-green-500/10 border-green-500/20">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
-            <Activity className="w-4 h-4 text-green-500" />
-            Network Effect: More Satellites = Safer Space
-          </h3>
-          <Badge className="bg-green-500 text-white">
-            {networkEffect.toFixed(0)}% Network Growth
-          </Badge>
-        </div>
-
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-muted-foreground">Satellites in Network</span>
-            <span className="text-lg font-bold text-green-500 font-mono">
-              {Math.floor(networkEffect * 2.47)} satellites
-            </span>
-          </div>
-          
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-muted-foreground">Total Collision Reduction</span>
-            <span className="text-lg font-bold text-blue-500 font-mono">
-              {totalCollisionReduction.toFixed(1)}%
-            </span>
-          </div>
-
-          <div className="w-full bg-muted rounded-full h-3">
-            <div 
-              className="h-3 rounded-full bg-gradient-to-r from-green-500 to-blue-500"
-              style={{ width: `${networkEffect}%` }}
-            />
-          </div>
-
-          <div className="text-xs text-muted-foreground">
-            Each new satellite joining the Edge-on-LEO network makes space safer for all operators
-          </div>
-        </div>
-      </Card>
-
       {/* Technical Benefits */}
       <Card className="p-4 bg-card border-border">
         <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
@@ -278,30 +221,20 @@ export default function SatelliteSizeOptimization() {
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-primary/10 p-3 rounded">
             <div className="text-sm font-semibold text-primary mb-1">Launch Cost</div>
-            <div className="text-xs text-muted-foreground">90% reduction in launch mass</div>
+            <div className="text-xs text-muted-foreground">75% reduction in launch mass</div>
           </div>
           <div className="bg-success/10 p-3 rounded">
             <div className="text-sm font-semibold text-success mb-1">Collision Risk</div>
-            <div className="text-xs text-muted-foreground">78.5% lower probability</div>
+            <div className="text-xs text-muted-foreground">45.2% lower probability</div>
           </div>
           <div className="bg-secondary/10 p-3 rounded">
             <div className="text-sm font-semibold text-secondary mb-1">Power Consumption</div>
-            <div className="text-xs text-muted-foreground">85% less onboard processing</div>
+            <div className="text-xs text-muted-foreground">70% less onboard processing</div>
           </div>
           <div className="bg-warning/10 p-3 rounded">
             <div className="text-sm font-semibold text-warning mb-1">Data Efficiency</div>
-            <div className="text-xs text-muted-foreground">90% bandwidth reduction</div>
+            <div className="text-xs text-muted-foreground">60% bandwidth reduction</div>
           </div>
-        </div>
-      </Card>
-
-      {/* Industry Impact */}
-      <Card className="p-4 bg-primary/20 border-primary text-center">
-        <div className="text-lg font-bold text-primary mb-2">
-          🚀 "The Smaller We Go, The Safer We Get"
-        </div>
-        <div className="text-sm text-muted-foreground">
-          Edge-on-LEO enables ultra-lightweight satellites that transform space debris from a crisis into a competitive advantage
         </div>
       </Card>
     </div>

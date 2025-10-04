@@ -1,29 +1,4 @@
-import { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Sphere, Stars, Line } from '@react-three/drei';
-import * as THREE from 'three';
-
-function Earth() {
-  const earthRef = useRef<THREE.Mesh>(null);
-
-  useFrame(() => {
-    if (earthRef.current) {
-      earthRef.current.rotation.y += 0.001;
-    }
-  });
-
-  return (
-    <Sphere ref={earthRef} args={[2, 64, 64]}>
-      <meshStandardMaterial
-        color="#2C5FFF"
-        emissive="#1A3D8F"
-        emissiveIntensity={0.2}
-        metalness={0.4}
-        roughness={0.7}
-      />
-    </Sphere>
-  );
-}
+import { useEffect, useRef } from 'react';
 
 interface Satellite {
   id: string;
@@ -35,58 +10,13 @@ interface Satellite {
   angle: number;
 }
 
-function SatelliteOrbit({ satellite }: { satellite: Satellite }) {
-  const satelliteRef = useRef<THREE.Mesh>(null);
-
-  useFrame(() => {
-    if (satelliteRef.current) {
-      satellite.angle += satellite.speed;
-      const x = Math.cos(satellite.angle) * satellite.radius;
-      const z = Math.sin(satellite.angle) * satellite.radius;
-      const y = 0; // Keep satellites on flat orbits
-      satelliteRef.current.position.set(x, y, z);
-    }
-  });
-
-  // Create orbit line points - straight circular orbits
-  const orbitPoints: [number, number, number][] = [];
-  for (let i = 0; i <= 64; i++) {
-    const angle = (i / 64) * Math.PI * 2;
-    orbitPoints.push([
-      Math.cos(angle) * satellite.radius,
-      0, // Keep orbits flat (straight)
-      Math.sin(angle) * satellite.radius,
-    ]);
-  }
-
-  return (
-    <>
-      <Line
-        points={orbitPoints}
-        color={satellite.color}
-        lineWidth={1}
-        opacity={0.3}
-        transparent
-      />
-      <mesh ref={satelliteRef}>
-        <boxGeometry args={satellite.id === 'leo-hub' ? [0.2, 0.2, 0.2] : [0.1, 0.1, 0.1]} />
-        <meshStandardMaterial
-          color={satellite.color}
-          emissive={satellite.color}
-          emissiveIntensity={satellite.id === 'leo-hub' ? 0.8 : 0.5}
-        />
-      </mesh>
-    </>
-  );
-}
-
 const satellites: Satellite[] = [
   {
     id: 'leo-hub',
     name: 'LEO Data Hub',
     type: 'earth-observation',
     color: '#FF6B6B',
-    radius: 2.8,
+    radius: 120,
     speed: 0.005,
     angle: Math.PI / 2,
   },
@@ -95,7 +25,7 @@ const satellites: Satellite[] = [
     name: 'EO-Alpha',
     type: 'earth-observation',
     color: '#30D8A7',
-    radius: 3.5,
+    radius: 150,
     speed: 0.01,
     angle: 0,
   },
@@ -104,7 +34,7 @@ const satellites: Satellite[] = [
     name: 'SAR-Beta',
     type: 'sar',
     color: '#4D9FFF',
-    radius: 4,
+    radius: 170,
     speed: 0.008,
     angle: Math.PI / 3,
   },
@@ -113,7 +43,7 @@ const satellites: Satellite[] = [
     name: 'IoT-Gamma',
     type: 'iot',
     color: '#FFB84D',
-    radius: 3.2,
+    radius: 135,
     speed: 0.012,
     angle: Math.PI,
   },
@@ -122,26 +52,147 @@ const satellites: Satellite[] = [
     name: 'Comm-Relay',
     type: 'earth-observation',
     color: '#30D8A7',
-    radius: 4.5,
+    radius: 190,
     speed: 0.007,
-    angle: Math.PI / 2,
+    angle: Math.PI * 1.5,
   },
 ];
 
-
 export default function EarthScene() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const resizeCanvas = () => {
+      const container = canvas.parentElement;
+      if (!container) return;
+      
+      const containerRect = container.getBoundingClientRect();
+      const size = Math.min(containerRect.width, containerRect.height, 600);
+      
+      canvas.width = size;
+      canvas.height = size;
+    };
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const earthRadius = Math.min(canvas.width, canvas.height) * 0.15;
+
+    // Load Earth image
+    const earthImage = new Image();
+    earthImage.src = '/earth.png';
+
+    const animate = () => {
+      // Recalculate dimensions for responsive scaling
+      const currentCenterX = canvas.width / 2;
+      const currentCenterY = canvas.height / 2;
+      const currentEarthRadius = Math.min(canvas.width, canvas.height) * 0.12;
+      
+      // Clear canvas
+      ctx.fillStyle = '#0a0a0a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw Earth image as perfect circle
+      if (earthImage.complete) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(currentCenterX, currentCenterY, currentEarthRadius, 0, Math.PI * 2);
+        ctx.clip();
+        
+        // Calculate image dimensions to maintain aspect ratio and fill circle
+        const imageAspect = earthImage.width / earthImage.height;
+        let drawWidth = currentEarthRadius * 2;
+        let drawHeight = currentEarthRadius * 2;
+        let drawX = currentCenterX - currentEarthRadius;
+        let drawY = currentCenterY - currentEarthRadius;
+        
+        if (imageAspect > 1) {
+          // Image is wider than tall
+          drawHeight = drawWidth / imageAspect;
+          drawY = currentCenterY - drawHeight / 2;
+        } else {
+          // Image is taller than wide
+          drawWidth = drawHeight * imageAspect;
+          drawX = currentCenterX - drawWidth / 2;
+        }
+        
+        ctx.drawImage(earthImage, drawX, drawY, drawWidth, drawHeight);
+        ctx.restore();
+        
+        // Add subtle border
+        ctx.beginPath();
+        ctx.arc(currentCenterX, currentCenterY, currentEarthRadius, 0, Math.PI * 2);
+        ctx.strokeStyle = '#1E40AF';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      } else {
+        // Fallback to solid color while image loads
+        ctx.beginPath();
+        ctx.arc(currentCenterX, currentCenterY, currentEarthRadius, 0, Math.PI * 2);
+        ctx.fillStyle = '#1E3A8A';
+        ctx.fill();
+        
+        ctx.beginPath();
+        ctx.arc(currentCenterX, currentCenterY, currentEarthRadius, 0, Math.PI * 2);
+        ctx.strokeStyle = '#1E40AF';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+
+      // Draw satellite orbits and satellites
+      satellites.forEach(satellite => {
+        // Update satellite position
+        satellite.angle += satellite.speed;
+        
+        // Scale satellite radius proportionally with better scaling
+        const baseRadius = 80;
+        const scaleFactor = currentEarthRadius / baseRadius;
+        const scaledRadius = satellite.radius * scaleFactor;
+        
+        // Draw orbit circle
+        ctx.beginPath();
+        ctx.arc(currentCenterX, currentCenterY, scaledRadius, 0, Math.PI * 2);
+        ctx.strokeStyle = satellite.color;
+        ctx.lineWidth = 1;
+        ctx.globalAlpha = 0.3;
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+
+        // Calculate satellite position
+        const x = currentCenterX + Math.cos(satellite.angle) * scaledRadius;
+        const y = currentCenterY + Math.sin(satellite.angle) * scaledRadius;
+
+        // Scale satellite size proportionally with better scaling
+        const baseSatelliteSize = satellite.id === 'leo-hub' ? 6 : 4;
+        const satelliteSize = Math.max(baseSatelliteSize * scaleFactor, 2);
+
+        // Draw satellite
+        ctx.beginPath();
+        ctx.arc(x, y, satelliteSize, 0, Math.PI * 2);
+        ctx.fillStyle = satellite.color;
+        ctx.fill();
+      });
+
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+  }, []);
+
   return (
     <div className="w-full h-full relative">
-      <Canvas camera={{ position: [0, 5, 10], fov: 50 }}>
-        <ambientLight intensity={0.3} />
-        <pointLight position={[10, 10, 10]} intensity={1} />
-        <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
-        <Earth />
-        {satellites.map((satellite) => (
-          <SatelliteOrbit key={satellite.id} satellite={satellite} />
-        ))}
-        <OrbitControls enableZoom={true} enablePan={false} minDistance={6} maxDistance={15} />
-      </Canvas>
+      <canvas
+        ref={canvasRef}
+        className="w-full h-full"
+      />
 
       {/* Satellite Key/Legend */}
       <div className="absolute bottom-4 right-4 pointer-events-none" style={{ zIndex: 2 }}>

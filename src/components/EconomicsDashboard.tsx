@@ -19,17 +19,21 @@ export default function EconomicsDashboard() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setMetrics((prev) => ({
-        // Traditional ground station costs: $1,000-5,000/hour
-        traditionalCost: prev.traditionalCost + Math.random() * 800 + 200,
-        // Edge processing costs: $200-800/hour (60-80% savings)
-        edgeCost: prev.edgeCost + Math.random() * 300 + 100,
-        // Bandwidth savings: 60-80% typical for edge processing
-        bandwidthSaved: prev.bandwidthSaved + Math.random() * 15 + 5,
-        // Time reduction: 70-90% for critical applications
-        timeSaved: Math.min(prev.timeSaved + Math.random() * 0.3 + 0.1, 85),
-      }));
-    }, 2000); // Update every 2 seconds for more realistic pacing
+      setMetrics((prev) => {
+        const newTraditionalCost = prev.traditionalCost + Math.random() * 800 + 200;
+        const newEdgeCost = prev.edgeCost + Math.random() * 300 + 100;
+        const newBandwidthSaved = prev.bandwidthSaved + Math.random() * 15 + 5;
+        const newTimeSaved = Math.min(prev.timeSaved + Math.random() * 0.2 + 0.1, 55);
+        
+        // Reset if values get too high
+        return {
+          traditionalCost: newTraditionalCost > 50000 ? Math.random() * 2000 + 1000 : newTraditionalCost,
+          edgeCost: newEdgeCost > 20000 ? Math.random() * 800 + 400 : newEdgeCost,
+          bandwidthSaved: newBandwidthSaved > 1000 ? Math.random() * 50 + 10 : newBandwidthSaved,
+          timeSaved: newTimeSaved,
+        };
+      });
+    }, 2000);
 
     return () => clearInterval(interval);
   }, []);
@@ -122,7 +126,7 @@ export default function EconomicsDashboard() {
           📊 Projected Annual Savings
         </div>
         <div className="text-2xl font-bold text-primary font-mono">
-          $2.4M
+          $1.2M
         </div>
         <div className="text-xs text-muted-foreground mt-1">
           Based on current session performance

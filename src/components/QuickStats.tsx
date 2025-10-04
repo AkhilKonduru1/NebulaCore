@@ -4,14 +4,14 @@ import { TrendingDown, Zap, DollarSign, Clock } from 'lucide-react';
 const stats = [
   {
     label: 'Cost Reduction',
-    value: '62%',
+    value: '35%',
     icon: DollarSign,
     color: 'text-success',
     bg: 'bg-success/10',
   },
   {
     label: 'Bandwidth Saved',
-    value: '70%',
+    value: '45%',
     icon: TrendingDown,
     color: 'text-primary',
     bg: 'bg-primary/10',
@@ -25,7 +25,7 @@ const stats = [
   },
   {
     label: 'Faster Processing',
-    value: '90%',
+    value: '60%',
     icon: Zap,
     color: 'text-warning',
     bg: 'bg-warning/10',
