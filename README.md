@@ -1,3 +1,6 @@
+Link to Canva presentation: https://www.canva.com/design/DAG08afLKew/PK86Cc2kthGUBdD_BiwYJQ/editutm_content=DAG08afLKew&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+
 # Orbit Decision Flow
 
 A sophisticated satellite constellation management and optimization platform that demonstrates real-time decision-making for space-based data processing and routing. This application showcases the benefits of edge computing in space through an interactive 2D visualization and comprehensive analytics dashboard.
@@ -187,20 +190,4 @@ We welcome contributions! Please follow these steps:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
-
-- **Three.js** community for excellent 3D graphics tools
-- **Radix UI** team for accessible component primitives
-- **Tailwind CSS** for the utility-first CSS framework
-- **React** team for the amazing frontend framework
-
-## 📞 Support
-
-For support, questions, or feature requests:
-- Open an issue on GitHub
-- Contact the development team
-- Check the documentation for common solutions
-
----
-
-**Built with ❤️ for the future of space-based computing**
+**Generated with GPT-5**
