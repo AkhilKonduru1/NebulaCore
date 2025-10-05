@@ -1,10 +1,10 @@
 # Orbit Decision Flow
 
-A sophisticated satellite constellation management and optimization platform that demonstrates real-time decision-making for space-based data processing and routing. This application showcases the benefits of edge computing in space through an interactive 3D visualization and comprehensive analytics dashboard.
+A sophisticated satellite constellation management and optimization platform that demonstrates real-time decision-making for space-based data processing and routing. This application showcases the benefits of edge computing in space through an interactive 2D visualization and comprehensive analytics dashboard.
 
 ## 🚀 Features
 
-### 🌍 Interactive 3D Earth Visualization
+### 🌍 Interactive 2D Earth Visualization
 - Real-time satellite orbit simulation with multiple satellite types
 - Dynamic Earth rendering with satellite constellation tracking
 - Visual satellite legend and orbit path indicators
@@ -47,10 +47,10 @@ A sophisticated satellite constellation management and optimization platform tha
 - **Lucide React** - Beautiful, customizable icons
 - **Shadcn/ui** - High-quality, customizable component library
 
-### 3D Graphics & Visualization
-- **Three.js** - 3D graphics library for WebGL rendering
-- **@react-three/fiber** - React renderer for Three.js
-- **@react-three/drei** - Useful helpers for React Three Fiber
+### Graphics & Visualization
+- **Canvas API** - 2D graphics rendering for satellite orbits
+- **Mathematical Calculations** - Orbit path and satellite position calculations
+- **Responsive Scaling** - Dynamic canvas sizing and satellite positioning
 
 ### State Management & Data
 - **TanStack Query** - Powerful data synchronization for React
@@ -122,7 +122,7 @@ src/
 ## 🎯 Key Components
 
 ### EarthScene
-- **Purpose**: Interactive 3D Earth visualization with satellite orbits
+- **Purpose**: Interactive 2D Earth visualization with satellite orbits
 - **Features**: Real-time satellite tracking, orbit path rendering, responsive scaling
 - **Technology**: Canvas-based 2D rendering with mathematical orbit calculations
 
